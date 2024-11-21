@@ -1,17 +1,40 @@
-import Image from "next/image"
-import { Inter } from "next/font/google"
-import { useSocket } from "@/context/socket"
-import { useEffect } from "react"
+import { v4 as uuidv4 } from "uuid"
+import { useRouter } from "next/navigation"
 
-const inter = Inter({ subsets: ["latin"] })
+import styles from "@/styles/home.module.css"
+import { useState } from "react"
 
 export default function Home() {
-  const socket = useSocket()
+  const router = useRouter()
+  const [roomId, setRoomId] = useState("")
 
-  useEffect(() => {
-    socket?.on("connect", () => {
-      console.log("client connected")
-    })
-  }, [socket])
-  return <div>welcome</div>
+  const createAndJoin = () => {
+    const roomId = uuidv4()
+    setRoomId(roomId)
+    router.push(`/${roomId}`)
+  }
+
+  const joinRoom = () => {
+    if (roomId) router.push(`/${roomId}`)
+    else {
+      alert("Please provide a valid room id")
+    }
+  }
+  return (
+    <div className={styles.homeContainer}>
+      <h1>Start Video Call</h1>
+      <div className={styles.enterRoom}>
+        <input
+          placeholder="Enter Room ID"
+          value={roomId}
+          onChange={(e) => setRoomId(e?.target?.value)}
+        />
+        <button onClick={joinRoom}>Join Room</button>
+      </div>
+      <span className={styles.separatorText}>
+        --------------- OR ---------------
+      </span>
+      <button onClick={createAndJoin}>Create a new room</button>
+    </div>
+  )
 }
