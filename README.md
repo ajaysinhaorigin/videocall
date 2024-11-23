@@ -42,3 +42,11 @@ peerjs --port 3001
 
 # 5. Start the Next.js development server
 npm run dev
+```
+## How to Use It
+- Navigate to http://localhost:3000 in your browser.
+- Create a new room by clicking the "Create Room" button.
+- Share the generated room ID with your friend.
+- Your friend can join the room by entering the shared room ID.
+- Start communicating via video and audio with your friend.
+
