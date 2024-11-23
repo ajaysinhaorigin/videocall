@@ -48,5 +48,5 @@ npm run dev
 - Create a new room by clicking the "Create Room" button.
 - Share the generated room ID with your friend.
 - Your friend can join the room by entering the shared room ID.
-- Start communicating via video and audio with your friend.
+- Start communicating via video and audio with your friend
 
